@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heatwave Monitoring Form with Validation</title>
+  <style>
+    .error { color: red; font-size: 14px; }
+    #result { color: green; font-weight: bold; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <h1>Heatwave Monitoring Form</h1>
+
+  <form id="heatForm" action="#" method="post" novalidate>
+
+    <fieldset>
+      <legend>Observer Details</legend>
+
+      <p>
+        <label for="name">Observer Name:</label><br>
+        <input type="text" id="name" name="name" required>
+        <span class="error" id="nameError"></span>
+      </p>
+
+      <p>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required>
+        <span class="error" id="emailError"></span>
+      </p>
+
+      <p>
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="tel" id="mobile" name="mobile" maxlength="10" required>
+        <span class="error" id="mobileError"></span>
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Station Details</legend>
+
+      <p>
+        <label for="station">AWS Station ID:</label><br>
+        <input type="text" id="station" name="station" placeholder="AWS001" required>
+        <span class="error" id="stationError"></span>
+      </p>
+
+      <p>
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" required>
+        <span class="error" id="locationError"></span>
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Observation Data</legend>
+
+      <p>
+        <label for="obsdate">Observation Date:</label><br>
+        <input type="date" id="obsdate" name="obsdate" required>
+        <span class="error" id="obsdateError"></span>
+      </p>
+
+      <p>
+        <label for="temp">Maximum Temperature (&deg;C):</label><br>
+        <input type="number" id="temp" name="temp" step="0.1" required>
+        <span class="error" id="tempError"></span>
+      </p>
+
+      <p>
+        <label for="humidity">Humidity (%):</label><br>
+        <input type="number" id="humidity" name="humidity" required>
+        <span class="error" id="humidityError"></span>
+      </p>
+
+      <p>
+        <label for="level">Heatwave Alert Level:</label><br>
+        <select id="level" name="level" required>
+          <option value="">Select level</option>
+          <option value="normal">Normal</option>
+          <option value="watch">Watch</option>
+          <option value="warning">Warning</option>
+          <option value="severe">Severe</option>
+        </select>
+        <span class="error" id="levelError"></span>
+      </p>
+    </fieldset>
+
+    <p>
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </p>
+
+    <div id="result"></div>
+  </form>
+
+  <script>
+    // Helper: show or clear an error message for a field
+    function showError(id, message) {
+      document.getElementById(id + "Error").textContent = message;
+      return message === "";          // true when there is no error
+    }
+
+    // Task 2: observer name and AWS station ID
+    function validateName() {
+      var value = document.getElementById("name").value.trim();
+      if (value === "") {
+        return showError("name", "Name cannot be blank.");
+      }
+      if (!/^[A-Za-z ]+$/.test(value)) {
+        return showError("name", "Name can contain only letters and spaces.");
+      }
+      if (value.length < 3) {
+        return showError("name", "Name must have at least 3 characters.");
+      }
+      return showError("name", "");
+    }
+
+    function validateStation() {
+      var value = document.getElementById("station").value.trim();
+      if (value === "") {
+        return showError("station", "Station ID cannot be blank.");
+      }
+      if (!/^AWS[0-9]{3}$/.test(value)) {
+        return showError("station", "Station ID must look like AWS001.");
+      }
+      return showError("station", "");
+    }
+
+    // Task 3: email and mobile number
+    function validateEmail() {
+      var value = document.getElementById("email").value.trim();
+      if (value === "") {
+        return showError("email", "Email cannot be blank.");
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        return showError("email", "Enter a valid email address.");
+      }
+      return showError("email", "");
+    }
+
+    function validateMobile() {
+      var value = document.getElementById("mobile").value.trim();
+      if (value === "") {
+        return showError("mobile", "Mobile number cannot be blank.");
+      }
+      if (!/^[6-9][0-9]{9}$/.test(value)) {
+        return showError("mobile", "Enter a 10-digit Indian mobile number starting with 6 to 9.");
+      }
+      return showError("mobile", "");
+    }
+
+    // Location (extra check so required fields are not left blank)
+    function validateLocation() {
+      var value = document.getElementById("location").value.trim();
+      if (value === "") {
+        return showError("location", "Location cannot be blank.");
+      }
+      return showError("location", "");
+    }
+
+    // Task 4: date, temperature and humidity
+    function validateDate() {
+      var value = document.getElementById("obsdate").value;
+      if (value === "") {
+        return showError("obsdate", "Please select the observation date.");
+      }
+      return showError("obsdate", "");
+    }
+
+    function validateTemp() {
+      var value = document.getElementById("temp").value.trim();
+      if (value === "") {
+        return showError("temp", "Maximum temperature is required.");
+      }
+      if (isNaN(value)) {
+        return showError("temp", "Temperature must be a number.");
+      }
+      var t = Number(value);
+      if (t < -10 || t > 60) {
+        return showError("temp", "Temperature must be between -10 and 60 \u00B0C.");
+      }
+      return showError("temp", "");
+    }
+
+    function validateHumidity() {
+      var value = document.getElementById("humidity").value.trim();
+      if (value === "") {
+        return showError("humidity", "Humidity is required.");
+      }
+      if (isNaN(value)) {
+        return showError("humidity", "Humidity must be a number.");
+      }
+      var h = Number(value);
+      if (h < 0 || h > 100) {
+        return showError("humidity", "Humidity must be between 0 and 100 percent.");
+      }
+      return showError("humidity", "");
+    }
+
+    // Task 5: alert level
+    function validateLevel() {
+      var value = document.getElementById("level").value;
+      if (value === "") {
+        return showError("level", "Please select an alert level.");
+      }
+      return showError("level", "");
+    }
+
+    // Task 5: submit event
+    document.getElementById("heatForm").addEventListener("submit", function (event) {
+      event.preventDefault();         // stop the page from reloading
+
+      // Run every check so all error messages appear together
+      var results = [
+        validateName(),
+        validateEmail(),
+        validateMobile(),
+        validateStation(),
+        validateLocation(),
+        validateDate(),
+        validateTemp(),
+        validateHumidity(),
+        validateLevel()
+      ];
+
+      var allValid = results.every(function (r) { return r === true; });
+      var result = document.getElementById("result");
+
+      if (allValid) {
+        var name = document.getElementById("name").value.trim();
+        result.textContent = "Thank you, " + name + ". Your heatwave observation was submitted successfully.";
+      } else {
+        result.textContent = "";
+      }
+    });
+
+    // Clear messages when the form is reset
+    document.getElementById("heatForm").addEventListener("reset", function () {
+      var errors = document.getElementsByClassName("error");
+      for (var i = 0; i < errors.length; i++) {
+        errors[i].textContent = "";
+      }
+      document.getElementById("result").textContent = "";
+    });
+  </script>
+</body>
+</html>

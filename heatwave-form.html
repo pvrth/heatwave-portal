@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heatwave Monitoring Form</title>
+</head>
+<body>
+  <h1>Heatwave Monitoring Form</h1>
+
+  <form action="#" method="post">
+
+    <fieldset>
+      <legend>Observer Details</legend>
+
+      <p>
+        <label for="name">Observer Name:</label><br>
+        <input type="text" id="name" name="name" required>
+      </p>
+
+      <p>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required>
+      </p>
+
+      <p>
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="tel" id="mobile" name="mobile" maxlength="10" required>
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Station Details</legend>
+
+      <p>
+        <label for="station">AWS Station ID:</label><br>
+        <input type="text" id="station" name="station" placeholder="AWS001" required>
+      </p>
+
+      <p>
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" required>
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Observation Data</legend>
+
+      <p>
+        <label for="obsdate">Observation Date:</label><br>
+        <input type="date" id="obsdate" name="obsdate" required>
+      </p>
+
+      <p>
+        <label for="temp">Maximum Temperature (&deg;C):</label><br>
+        <input type="number" id="temp" name="temp" step="0.1" required>
+      </p>
+
+      <p>
+        <label for="humidity">Humidity (%):</label><br>
+        <input type="number" id="humidity" name="humidity" min="0" max="100" required>
+      </p>
+
+      <p>
+        <label for="level">Heatwave Alert Level:</label><br>
+        <select id="level" name="level" required>
+          <option value="">Select level</option>
+          <option value="normal">Normal</option>
+          <option value="watch">Watch</option>
+          <option value="warning">Warning</option>
+          <option value="severe">Severe</option>
+        </select>
+      </p>
+    </fieldset>
+
+    <p>
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </p>
+
+  </form>
+</body>
+</html>

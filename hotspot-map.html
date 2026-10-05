@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Heatwave Intelligence System: heatwave monitoring, alerts and advisories.">
+  <title>Hotspot Map | Heatwave Intelligence System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar"><div><span>Monitoring season 2026</span><span>Disaster helpline: <a href="tel:1078">1078</a></span></div></div>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="images/logo.svg" alt="" width="44" height="44">
+      <span><span id="logo-text" class="logo-text" title="HeatWatch, the short name of the portal" style="letter-spacing:.01em">HeatWatch</span><span class="tagline">Heatwave Intelligence System</span></span>
+    </a>
+  </header>
+  <nav class="site-nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="alert-details.html">Alert</a></li><li><a href="about-system.html">About</a></li><li><a href="sources.html">Sources</a></li><li><a href="hotspot-map.html" aria-current="page">Map</a></li><li><a href="forecast.html">Forecast</a></li><li><a href="subscribe.html">Subscribe</a></li><li><a href="media.html">Media</a></li><li><a href="navigation.html">Navigation</a></li></ul></nav>
+  <main>
+
+    <h1>Regional Heatwave Hotspot Map</h1>
+    <p class="lead">Select a zone on the map to open its details.</p>
+    <div class="map-wrap">
+      <img src="images/map.svg" width="800" height="500" usemap="#heatmap" alt="Map of three zones. The North Zone has an extreme heat alert and the Central Zone a high alert.">
+    </div>
+    <map name="heatmap">
+      <area shape="poly" coords="150,40,650,40,700,160,100,170" href="region-north.html" alt="Region A: North Zone" title="Region A: North Zone">
+      <area shape="poly" coords="100,170,700,160,740,310,60,320" href="region-central.html" alt="Region B: Central Zone" title="Region B: Central Zone">
+    </map>
+    <ul class="legend">
+      <li style="--c:#e9aaa0">Extreme</li><li style="--c:#f1c58f">High</li><li style="--c:#cfe3c4">No alert</li>
+    </ul>
+
+  </main>
+  <footer class="site-footer">
+    <p>Heatwave Intelligence System. Web Development Laboratory project. All data shown is sample data.</p>
+  </footer>
+</body>
+</html>

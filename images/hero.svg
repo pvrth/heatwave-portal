@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#f3d6b3"/>
+  <circle cx="480" cy="200" r="96" fill="#e58a2f"/>
+  <path d="M0 330 L120 280 L240 320 L380 262 L520 318 L640 276 L720 306 L720 540 L0 540Z" fill="#dfa273"/>
+  <g fill="#9c5a3c">
+    <rect x="90" y="300" width="34" height="120"/><rect x="128" y="270" width="44" height="150"/><rect x="176" y="312" width="30" height="108"/>
+    <rect x="214" y="288" width="40" height="132"/><rect x="258" y="320" width="28" height="100"/><rect x="300" y="276" width="46" height="144"/>
+    <rect x="350" y="304" width="34" height="116"/><rect x="388" y="326" width="30" height="94"/>
+  </g>
+  <g fill="#f3d6b3"><rect x="136" y="284" width="8" height="8"/><rect x="152" y="284" width="8" height="8"/><rect x="136" y="304" width="8" height="8"/><rect x="152" y="304" width="8" height="8"/>
+    <rect x="308" y="292" width="8" height="8"/><rect x="326" y="292" width="8" height="8"/><rect x="308" y="312" width="8" height="8"/><rect x="326" y="312" width="8" height="8"/>
+    <rect x="222" y="302" width="8" height="8"/><rect x="238" y="302" width="8" height="8"/></g>
+  <path d="M0 410 C140 390 260 420 400 404 C540 388 640 412 720 398 L720 540 L0 540Z" fill="#7d4a35"/>
+  <path d="M0 470 C180 452 360 484 720 456 L720 540 L0 540Z" fill="#4a2c20"/>
+  <rect x="36" y="392" width="228" height="108" fill="#fff"/>
+  <text x="56" y="448" font-family="Georgia, serif" font-size="52" font-weight="700" fill="#12355b">47°C</text>
+  <text x="58" y="476" font-family="Arial, sans-serif" font-size="16" fill="#5f6b7a">Highest forecast, North Zone</text>
+</svg>
