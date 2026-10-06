@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
   <div class="topbar"><div><span>Monitoring season 2026</span><span>Disaster helpline: <a href="tel:1078">1078</a></span></div></div>
@@ -62,9 +63,31 @@
       <button type="reset">Reset</button>
     </form>
 
+    <section>
+      <h2>Alert message preview</h2>
+      <p>Toggle the sample advisory message on this page, or click the demo button.</p>
+      <p>
+        <button id="btn" type="button">Click Me</button>
+        <button id="toggleBtn" type="button">Hide / show message</button>
+      </p>
+      <div id="message" class="block sev-mod">
+        <p><strong>Sample advisory:</strong> Stay indoors between 12 noon and 4 pm, drink at least 3 L of water a day and check on elderly neighbours.</p>
+      </div>
+    </section>
+
   </main>
   <footer class="site-footer">
     <p>Heatwave Intelligence System. Web Development Laboratory project. All data shown is sample data.</p>
   </footer>
+
+  <script>
+    $("#btn").click(function () {
+      alert("Button clicked!");
+    });
+
+    $("#toggleBtn").click(function () {
+      $("#message").toggle();
+    });
+  </script>
 </body>
 </html>
