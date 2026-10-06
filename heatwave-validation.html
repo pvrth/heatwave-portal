@@ -3,96 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Heatwave Monitoring Form with Validation</title>
-  <style>
-    .error { color: red; font-size: 14px; }
-    #result { color: green; font-weight: bold; margin-top: 15px; }
-  </style>
+  <meta name="description" content="Heatwave Intelligence System: heatwave monitoring, alerts and advisories.">
+  <title>Form Validation | Heatwave Intelligence System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Heatwave Monitoring Form</h1>
+  <div class="topbar"><div><span>Monitoring season 2026</span><span>Disaster helpline: <a href="tel:1078">1078</a></span></div></div>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="images/logo.svg" alt="" width="44" height="44">
+      <span><span id="logo-text" class="logo-text" title="HeatWatch, the short name of the portal" style="letter-spacing:.01em">HeatWatch</span><span class="tagline">Heatwave Intelligence System</span></span>
+    </a>
+  </header>
+  <nav class="site-nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="alert-details.html">Alert</a></li><li><a href="about-system.html">About</a></li><li><a href="sources.html">Sources</a></li><li><a href="hotspot-map.html">Map</a></li><li><a href="forecast.html">Forecast</a></li><li><a href="subscribe.html">Subscribe</a></li><li><a href="media.html">Media</a></li><li><a href="heatwave-form.html">Form</a></li><li><a href="heatwave-validation.html" aria-current="page">Validation</a></li><li><a href="programs.html">Programs</a></li><li><a href="navigation.html">Navigation</a></li></ul></nav>
+  <main>
 
-  <form id="heatForm" action="#" method="post" novalidate>
+    <h1>Heatwave Monitoring Form with Validation</h1>
+    <p class="lead">Every field is checked before the observation is accepted. Error messages appear below the field.</p>
 
-    <fieldset>
-      <legend>Observer Details</legend>
+    <form id="heatForm" action="#" method="post" novalidate>
+
+      <fieldset>
+        <legend>Observer Details</legend>
+        <div class="field">
+          <label for="name">Observer Name</label>
+          <input type="text" id="name" name="name" required>
+          <span class="error" id="nameError"></span>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+          <span class="error" id="emailError"></span>
+        </div>
+        <div class="field">
+          <label for="mobile">Mobile Number</label>
+          <input type="tel" id="mobile" name="mobile" maxlength="10" required>
+          <span class="error" id="mobileError"></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Station Details</legend>
+        <div class="field">
+          <label for="station">AWS Station ID</label>
+          <input type="text" id="station" name="station" placeholder="AWS001" required>
+          <span class="error" id="stationError"></span>
+        </div>
+        <div class="field">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" required>
+          <span class="error" id="locationError"></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Observation Data</legend>
+        <div class="field">
+          <label for="obsdate">Observation Date</label>
+          <input type="date" id="obsdate" name="obsdate" required>
+          <span class="error" id="obsdateError"></span>
+        </div>
+        <div class="field">
+          <label for="temp">Maximum Temperature (&deg;C)</label>
+          <input type="number" id="temp" name="temp" step="0.1" required>
+          <span class="error" id="tempError"></span>
+        </div>
+        <div class="field">
+          <label for="humidity">Humidity (%)</label>
+          <input type="number" id="humidity" name="humidity" required>
+          <span class="error" id="humidityError"></span>
+        </div>
+        <div class="field">
+          <label for="level">Heatwave Alert Level</label>
+          <select id="level" name="level" required>
+            <option value="">Select level</option>
+            <option value="normal">Normal</option>
+            <option value="watch">Watch</option>
+            <option value="warning">Warning</option>
+            <option value="severe">Severe</option>
+          </select>
+          <span class="error" id="levelError"></span>
+        </div>
+      </fieldset>
 
       <p>
-        <label for="name">Observer Name:</label><br>
-        <input type="text" id="name" name="name" required>
-        <span class="error" id="nameError"></span>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
       </p>
 
-      <p>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required>
-        <span class="error" id="emailError"></span>
-      </p>
+      <div id="result" class="result"></div>
+    </form>
 
-      <p>
-        <label for="mobile">Mobile Number:</label><br>
-        <input type="tel" id="mobile" name="mobile" maxlength="10" required>
-        <span class="error" id="mobileError"></span>
-      </p>
-    </fieldset>
+    <p><small>Need the plain version? <a href="heatwave-form.html">Open the basic monitoring form</a>.</small></p>
 
-    <fieldset>
-      <legend>Station Details</legend>
-
-      <p>
-        <label for="station">AWS Station ID:</label><br>
-        <input type="text" id="station" name="station" placeholder="AWS001" required>
-        <span class="error" id="stationError"></span>
-      </p>
-
-      <p>
-        <label for="location">Location:</label><br>
-        <input type="text" id="location" name="location" required>
-        <span class="error" id="locationError"></span>
-      </p>
-    </fieldset>
-
-    <fieldset>
-      <legend>Observation Data</legend>
-
-      <p>
-        <label for="obsdate">Observation Date:</label><br>
-        <input type="date" id="obsdate" name="obsdate" required>
-        <span class="error" id="obsdateError"></span>
-      </p>
-
-      <p>
-        <label for="temp">Maximum Temperature (&deg;C):</label><br>
-        <input type="number" id="temp" name="temp" step="0.1" required>
-        <span class="error" id="tempError"></span>
-      </p>
-
-      <p>
-        <label for="humidity">Humidity (%):</label><br>
-        <input type="number" id="humidity" name="humidity" required>
-        <span class="error" id="humidityError"></span>
-      </p>
-
-      <p>
-        <label for="level">Heatwave Alert Level:</label><br>
-        <select id="level" name="level" required>
-          <option value="">Select level</option>
-          <option value="normal">Normal</option>
-          <option value="watch">Watch</option>
-          <option value="warning">Warning</option>
-          <option value="severe">Severe</option>
-        </select>
-        <span class="error" id="levelError"></span>
-      </p>
-    </fieldset>
-
-    <p>
-      <button type="submit">Submit</button>
-      <button type="reset">Reset</button>
-    </p>
-
-    <div id="result"></div>
-  </form>
+  </main>
+  <footer class="site-footer">
+    <p>Heatwave Intelligence System. Web Development Laboratory project. All data shown is sample data.</p>
+  </footer>
 
   <script>
     // Helper: show or clear an error message for a field

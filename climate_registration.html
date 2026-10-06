@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Heatwave Intelligence System: heatwave monitoring, alerts and advisories.">
+  <title>Climate Registration | Heatwave Intelligence System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar"><div><span>Monitoring season 2026</span><span>Disaster helpline: <a href="tel:1078">1078</a></span></div></div>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="images/logo.svg" alt="" width="44" height="44">
+      <span><span id="logo-text" class="logo-text" title="HeatWatch, the short name of the portal" style="letter-spacing:.01em">HeatWatch</span><span class="tagline">Heatwave Intelligence System</span></span>
+    </a>
+  </header>
+  <nav class="site-nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="alert-details.html">Alert</a></li><li><a href="about-system.html">About</a></li><li><a href="sources.html">Sources</a></li><li><a href="hotspot-map.html">Map</a></li><li><a href="forecast.html">Forecast</a></li><li><a href="subscribe.html">Subscribe</a></li><li><a href="media.html">Media</a></li><li><a href="heatwave-form.html">Form</a></li><li><a href="heatwave-validation.html">Validation</a></li><li><a href="programs.html" aria-current="page">Programs</a></li><li><a href="navigation.html">Navigation</a></li></ul></nav>
+  <main>
+
+    <h1>Climate Intelligence Registration</h1>
+    <p class="lead">Program 6: register for heatwave monitoring and early-warning alerts. Every field is checked before the form is accepted.</p>
+
+    <form id="registerForm" action="#" method="post" novalidate>
+
+      <fieldset>
+        <legend>User Details</legend>
+        <div class="field">
+          <label for="username">User Name</label>
+          <input type="text" id="username" name="username" placeholder="Rahul Sharma" required>
+          <span class="error" id="usernameError"></span>
+        </div>
+        <div class="field">
+          <label for="mobile">Mobile Number</label>
+          <input type="tel" id="mobile" name="mobile" maxlength="10" placeholder="9876543210" required>
+          <span class="error" id="mobileError"></span>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="rahul@gmail.com" required>
+          <span class="error" id="emailError"></span>
+        </div>
+        <div class="field">
+          <label for="userid">Climate User ID</label>
+          <input type="text" id="userid" name="userid" placeholder="CLM-1234" required>
+          <span class="error" id="useridError"></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Location Details</legend>
+        <div class="field">
+          <label for="city">Location / City</label>
+          <input type="text" id="city" name="city" placeholder="Mumbai" required>
+          <span class="error" id="cityError"></span>
+        </div>
+        <div class="field">
+          <label for="pin">PIN / Postal Code</label>
+          <input type="text" id="pin" name="pin" maxlength="6" placeholder="400077" required>
+          <span class="error" id="pinError"></span>
+        </div>
+        <div class="field">
+          <label for="regdate">Registration Date</label>
+          <input type="date" id="regdate" name="regdate" required>
+          <span class="error" id="regdateError"></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Alert Preferences</legend>
+        <div class="field">
+          <label for="agegroup">Age Group</label>
+          <select id="agegroup" name="agegroup" required>
+            <option value="">Select age group</option>
+            <option value="under18">Below 18</option>
+            <option value="18-30">18 &ndash; 30</option>
+            <option value="31-45">31 &ndash; 45</option>
+            <option value="46-60">46 &ndash; 60</option>
+            <option value="above60">Above 60</option>
+          </select>
+          <span class="error" id="agegroupError"></span>
+        </div>
+        <div class="field">
+          <label for="category">User Category</label>
+          <select id="category" name="category" required>
+            <option value="">Select category</option>
+            <option value="general">General Public</option>
+            <option value="senior">Senior Citizen</option>
+            <option value="student">Student</option>
+            <option value="outdoor">Outdoor Worker</option>
+            <option value="healthcare">Healthcare Worker</option>
+            <option value="government">Government / Disaster Management</option>
+            <option value="other">Other</option>
+          </select>
+          <span class="error" id="categoryError"></span>
+        </div>
+        <div class="field">
+          <label for="channel">Preferred Alert Channel</label>
+          <select id="channel" name="channel" required>
+            <option value="">Select channel</option>
+            <option value="sms">SMS</option>
+            <option value="email">Email</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="app">Mobile App Push</option>
+            <option value="call">Phone Call</option>
+          </select>
+          <span class="error" id="channelError"></span>
+        </div>
+      </fieldset>
+
+      <p>
+        <button type="submit">Register</button>
+        <button type="reset">Reset</button>
+      </p>
+
+      <div id="result" class="result"></div>
+    </form>
+
+    <p><small><a href="programs.html">Back to all programs</a>.</small></p>
+
+    <script>
+      function showError(id, message) {
+        var field = document.getElementById(id);
+        var valid = message === "";
+        document.getElementById(id + "Error").textContent = message;
+        if (valid) {
+          field.classList.remove("invalid");
+        } else {
+          field.classList.add("invalid");
+        }
+        return valid;
+      }
+
+      function todayString() {
+        var today = new Date();
+        var month = String(today.getMonth() + 1);
+        var day = String(today.getDate());
+        if (month.length < 2) { month = "0" + month; }
+        if (day.length < 2) { day = "0" + day; }
+        return today.getFullYear() + "-" + month + "-" + day;
+      }
+
+      function validateUsername() {
+        var value = document.getElementById("username").value.trim();
+        if (value === "") {
+          return showError("username", "User name cannot be blank.");
+        }
+        if (!/^[A-Za-z ]+$/.test(value)) {
+          return showError("username", "User name must contain only alphabets and spaces.");
+        }
+        return showError("username", "");
+      }
+
+      function validateMobile() {
+        var value = document.getElementById("mobile").value.trim();
+        if (value === "") {
+          return showError("mobile", "Mobile number cannot be blank.");
+        }
+        if (!/^[0-9]{10}$/.test(value)) {
+          return showError("mobile", "Mobile number must contain exactly 10 digits.");
+        }
+        return showError("mobile", "");
+      }
+
+      function validateEmail() {
+        var value = document.getElementById("email").value.trim();
+        if (value === "") {
+          return showError("email", "Email cannot be blank.");
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          return showError("email", "Enter a valid email address.");
+        }
+        return showError("email", "");
+      }
+
+      function validateUserId() {
+        var value = document.getElementById("userid").value.trim();
+        if (value === "") {
+          return showError("userid", "User ID cannot be blank.");
+        }
+        if (!/^CLM-[0-9]{4}$/.test(value)) {
+          return showError("userid", "User ID must follow the pattern CLM-1234.");
+        }
+        return showError("userid", "");
+      }
+
+      function validateCity() {
+        var value = document.getElementById("city").value.trim();
+        if (value === "") {
+          return showError("city", "Location or city cannot be blank.");
+        }
+        return showError("city", "");
+      }
+
+      function validatePin() {
+        var value = document.getElementById("pin").value.trim();
+        if (value === "") {
+          return showError("pin", "PIN code cannot be blank.");
+        }
+        if (!/^[0-9]{6}$/.test(value)) {
+          return showError("pin", "PIN code must contain exactly 6 digits.");
+        }
+        return showError("pin", "");
+      }
+
+      function validateRegDate() {
+        var value = document.getElementById("regdate").value;
+        if (value === "") {
+          return showError("regdate", "Registration date must be entered.");
+        }
+        if (value > todayString()) {
+          return showError("regdate", "Registration date cannot be a future date.");
+        }
+        return showError("regdate", "");
+      }
+
+      function validateAgeGroup() {
+        var value = document.getElementById("agegroup").value;
+        if (value === "") {
+          return showError("agegroup", "Please select an age group.");
+        }
+        return showError("agegroup", "");
+      }
+
+      function validateCategory() {
+        var value = document.getElementById("category").value;
+        if (value === "") {
+          return showError("category", "Please select a user category.");
+        }
+        return showError("category", "");
+      }
+
+      function validateChannel() {
+        var value = document.getElementById("channel").value;
+        if (value === "") {
+          return showError("channel", "Please select a preferred alert channel.");
+        }
+        return showError("channel", "");
+      }
+
+      document.getElementById("regdate").max = todayString();
+
+      document.getElementById("registerForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var results = [
+          validateUsername(),
+          validateMobile(),
+          validateEmail(),
+          validateUserId(),
+          validateCity(),
+          validatePin(),
+          validateRegDate(),
+          validateAgeGroup(),
+          validateCategory(),
+          validateChannel()
+        ];
+
+        var allValid = results.every(function (r) { return r === true; });
+        var result = document.getElementById("result");
+
+        if (allValid) {
+          result.innerHTML = "Registration Successful!<br>You are registered for Climate Intelligence Heatwave Monitoring and Early-Warning Alerts.";
+        } else {
+          result.textContent = "";
+        }
+      });
+
+      document.getElementById("registerForm").addEventListener("reset", function () {
+        var errors = document.getElementsByClassName("error");
+        for (var i = 0; i < errors.length; i++) {
+          errors[i].textContent = "";
+        }
+        var invalidFields = document.getElementsByClassName("invalid");
+        while (invalidFields.length > 0) {
+          invalidFields[0].classList.remove("invalid");
+        }
+        document.getElementById("result").textContent = "";
+      });
+    </script>
+
+  </main>
+  <footer class="site-footer">
+    <p>Heatwave Intelligence System. Web Development Laboratory project. All data shown is sample data.</p>
+  </footer>
+</body>
+</html>

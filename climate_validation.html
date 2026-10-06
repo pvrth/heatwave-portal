@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Heatwave Intelligence System: heatwave monitoring, alerts and advisories.">
+  <title>Registration Validation | Heatwave Intelligence System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar"><div><span>Monitoring season 2026</span><span>Disaster helpline: <a href="tel:1078">1078</a></span></div></div>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="images/logo.svg" alt="" width="44" height="44">
+      <span><span id="logo-text" class="logo-text" title="HeatWatch, the short name of the portal" style="letter-spacing:.01em">HeatWatch</span><span class="tagline">Heatwave Intelligence System</span></span>
+    </a>
+  </header>
+  <nav class="site-nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="alert-details.html">Alert</a></li><li><a href="about-system.html">About</a></li><li><a href="sources.html">Sources</a></li><li><a href="hotspot-map.html">Map</a></li><li><a href="forecast.html">Forecast</a></li><li><a href="subscribe.html">Subscribe</a></li><li><a href="media.html">Media</a></li><li><a href="heatwave-form.html">Form</a></li><li><a href="heatwave-validation.html">Validation</a></li><li><a href="programs.html" aria-current="page">Programs</a></li><li><a href="navigation.html">Navigation</a></li></ul></nav>
+  <main>
+
+    <h1>Climate Registration Validation</h1>
+    <p class="lead">Program 5: validate registration details with regular expressions and show a field-level message for anything invalid.</p>
+
+    <form id="climateForm" action="#" method="post" novalidate>
+
+      <fieldset>
+        <legend>Registration Details</legend>
+        <div class="field">
+          <label for="username">User Name</label>
+          <input type="text" id="username" name="username" placeholder="Rahul Sharma" required>
+          <span class="error" id="usernameError"></span>
+        </div>
+        <div class="field">
+          <label for="mobile">Mobile Number</label>
+          <input type="tel" id="mobile" name="mobile" maxlength="10" placeholder="9876543210" required>
+          <span class="error" id="mobileError"></span>
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="rahul@gmail.com" required>
+          <span class="error" id="emailError"></span>
+        </div>
+        <div class="field">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" placeholder="Mumbai" required>
+          <span class="error" id="locationError"></span>
+        </div>
+        <div class="field">
+          <label for="userid">Climate User ID</label>
+          <input type="text" id="userid" name="userid" placeholder="CLM-1234" required>
+          <span class="error" id="useridError"></span>
+        </div>
+        <div class="field">
+          <label for="pin">PIN Code</label>
+          <input type="text" id="pin" name="pin" maxlength="6" placeholder="400077" required>
+          <span class="error" id="pinError"></span>
+        </div>
+      </fieldset>
+
+      <p>
+        <button type="submit">Validate</button>
+        <button type="reset">Reset</button>
+      </p>
+
+      <div id="result" class="result"></div>
+    </form>
+
+    <p><small><a href="programs.html">Back to all programs</a>.</small></p>
+
+    <script>
+      function showError(id, message) {
+        document.getElementById(id + "Error").textContent = message;
+        return message === "";
+      }
+
+      function validateUsername() {
+        var value = document.getElementById("username").value.trim();
+        if (value === "") {
+          return showError("username", "User name cannot be blank.");
+        }
+        if (!/^[A-Za-z ]+$/.test(value)) {
+          return showError("username", "User name can contain only alphabets and spaces.");
+        }
+        return showError("username", "");
+      }
+
+      function validateMobile() {
+        var value = document.getElementById("mobile").value.trim();
+        if (value === "") {
+          return showError("mobile", "Mobile number cannot be blank.");
+        }
+        if (!/^[6-9][0-9]{9}$/.test(value)) {
+          return showError("mobile", "Enter a valid 10-digit Indian mobile number.");
+        }
+        return showError("mobile", "");
+      }
+
+      function validateEmail() {
+        var value = document.getElementById("email").value.trim();
+        if (value === "") {
+          return showError("email", "Email address cannot be blank.");
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          return showError("email", "Enter a valid email address.");
+        }
+        return showError("email", "");
+      }
+
+      function validateLocation() {
+        var value = document.getElementById("location").value.trim();
+        if (value === "") {
+          return showError("location", "Location cannot be blank.");
+        }
+        if (!/^[A-Za-z ]+$/.test(value)) {
+          return showError("location", "Location can contain only alphabets and spaces.");
+        }
+        return showError("location", "");
+      }
+
+      function validateUserId() {
+        var value = document.getElementById("userid").value.trim();
+        if (value === "") {
+          return showError("userid", "User ID cannot be blank.");
+        }
+        if (!/^CLM-[0-9]{4}$/.test(value)) {
+          return showError("userid", "User ID must look like CLM-1234.");
+        }
+        return showError("userid", "");
+      }
+
+      function validatePin() {
+        var value = document.getElementById("pin").value.trim();
+        if (value === "") {
+          return showError("pin", "PIN code cannot be blank.");
+        }
+        if (!/^[0-9]{6}$/.test(value)) {
+          return showError("pin", "PIN code must contain exactly 6 digits.");
+        }
+        return showError("pin", "");
+      }
+
+      document.getElementById("climateForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var results = [
+          validateUsername(),
+          validateMobile(),
+          validateEmail(),
+          validateLocation(),
+          validateUserId(),
+          validatePin()
+        ];
+
+        var allValid = results.every(function (r) { return r === true; });
+        var result = document.getElementById("result");
+
+        if (allValid) {
+          var name = document.getElementById("username").value.trim();
+          result.textContent = "Success! All details of " + name + " are valid. Registration accepted.";
+        } else {
+          result.textContent = "";
+        }
+      });
+
+      document.getElementById("climateForm").addEventListener("reset", function () {
+        var errors = document.getElementsByClassName("error");
+        for (var i = 0; i < errors.length; i++) {
+          errors[i].textContent = "";
+        }
+        document.getElementById("result").textContent = "";
+      });
+    </script>
+
+  </main>
+  <footer class="site-footer">
+    <p>Heatwave Intelligence System. Web Development Laboratory project. All data shown is sample data.</p>
+  </footer>
+</body>
+</html>

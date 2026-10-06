@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Heatwave Intelligence System: heatwave monitoring, alerts and advisories.">
+  <title>Temperature Analysis | Heatwave Intelligence System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar"><div><span>Monitoring season 2026</span><span>Disaster helpline: <a href="tel:1078">1078</a></span></div></div>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="images/logo.svg" alt="" width="44" height="44">
+      <span><span id="logo-text" class="logo-text" title="HeatWatch, the short name of the portal" style="letter-spacing:.01em">HeatWatch</span><span class="tagline">Heatwave Intelligence System</span></span>
+    </a>
+  </header>
+  <nav class="site-nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="alert-details.html">Alert</a></li><li><a href="about-system.html">About</a></li><li><a href="sources.html">Sources</a></li><li><a href="hotspot-map.html">Map</a></li><li><a href="forecast.html">Forecast</a></li><li><a href="subscribe.html">Subscribe</a></li><li><a href="media.html">Media</a></li><li><a href="heatwave-form.html">Form</a></li><li><a href="heatwave-validation.html">Validation</a></li><li><a href="programs.html" aria-current="page">Programs</a></li><li><a href="navigation.html">Navigation</a></li></ul></nav>
+  <main>
+
+    <h1>Heatwave Temperature Analysis</h1>
+    <p class="lead">Program 1: compare the current temperature of a location with its heatwave threshold and display the monitoring status.</p>
+    <noscript><p class="warn">JavaScript is turned off. This program cannot run until it is enabled.</p></noscript>
+
+    <div id="analysis-output"></div>
+
+    <script>
+      var locationName = "Mumbai";
+      var currentTemperature = 39;
+      var heatwaveThreshold = 37;
+      var humidity = 65;
+      var monitoringDate = "2026-05-12";
+
+      var temperatureDifference = currentTemperature - heatwaveThreshold;
+      var heatwaveStatus = currentTemperature >= heatwaveThreshold ? "Heatwave Condition Detected" : "No Heatwave Condition";
+
+      console.log("Location: " + locationName);
+      console.log("Current Temperature: " + currentTemperature + "\u00B0C");
+      console.log("Heatwave Threshold: " + heatwaveThreshold + "\u00B0C");
+      console.log("Temperature Difference: " + temperatureDifference + "\u00B0C");
+      console.log("Status: " + heatwaveStatus);
+
+      var blockClass = currentTemperature >= heatwaveThreshold ? "sev-ext" : "sev-low";
+
+      document.write(
+        '<div class="block ' + blockClass + '">' +
+          '<h2>Monitoring Status</h2>' +
+          '<dl>' +
+            '<dt>Location</dt><dd>' + locationName + '</dd>' +
+            '<dt>Current</dt><dd>' + currentTemperature + '&deg;C</dd>' +
+            '<dt>Threshold</dt><dd>' + heatwaveThreshold + '&deg;C</dd>' +
+            '<dt>Difference</dt><dd>' + temperatureDifference + '&deg;C</dd>' +
+            '<dt>Humidity</dt><dd>' + humidity + '%</dd>' +
+            '<dt>Date</dt><dd><time datetime="' + monitoringDate + '">' + monitoringDate + '</time></dd>' +
+            '<dt>Status</dt><dd><strong>' + heatwaveStatus + '</strong></dd>' +
+          '</dl>' +
+        '</div>'
+      );
+
+      alert(
+        "Location: " + locationName + "\n" +
+        "Current Temperature: " + currentTemperature + "\u00B0C\n" +
+        "Heatwave Threshold: " + heatwaveThreshold + "\u00B0C\n" +
+        "Temperature Difference: " + temperatureDifference + "\u00B0C\n" +
+        "Status: " + heatwaveStatus
+      );
+    </script>
+
+    <p><small>Open the browser console to see the same values printed with <code>console.log()</code>. <a href="programs.html">Back to all programs</a>.</small></p>
+
+  </main>
+  <footer class="site-footer">
+    <p>Heatwave Intelligence System. Web Development Laboratory project. All data shown is sample data.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Heatwave Intelligence System: heatwave monitoring, alerts and advisories.">
+  <title>Risk and Early Warning | Heatwave Intelligence System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar"><div><span>Monitoring season 2026</span><span>Disaster helpline: <a href="tel:1078">1078</a></span></div></div>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="images/logo.svg" alt="" width="44" height="44">
+      <span><span id="logo-text" class="logo-text" title="HeatWatch, the short name of the portal" style="letter-spacing:.01em">HeatWatch</span><span class="tagline">Heatwave Intelligence System</span></span>
+    </a>
+  </header>
+  <nav class="site-nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="alert-details.html">Alert</a></li><li><a href="about-system.html">About</a></li><li><a href="sources.html">Sources</a></li><li><a href="hotspot-map.html">Map</a></li><li><a href="forecast.html">Forecast</a></li><li><a href="subscribe.html">Subscribe</a></li><li><a href="media.html">Media</a></li><li><a href="heatwave-form.html">Form</a></li><li><a href="heatwave-validation.html">Validation</a></li><li><a href="programs.html" aria-current="page">Programs</a></li><li><a href="navigation.html">Navigation</a></li></ul></nav>
+  <main>
+
+    <h1>Heatwave Risk and Early-Warning Decision</h1>
+    <p class="lead">Program 2: recommend a warning level from temperature, humidity and forecast values using if, else-if and else.</p>
+    <noscript><p class="warn">JavaScript is turned off. This program cannot run until it is enabled.</p></noscript>
+
+    <div id="warning-output"></div>
+
+    <script>
+      var locationName = "Pune";
+      var currentTemperature = 39;
+      var humidity = 65;
+      var forecastTemperature = 41;
+      var heatwaveCondition = true;
+      var vulnerablePopulationAlert = true;
+
+      var riskLevel = "";
+      var recommendation = "";
+
+      if (currentTemperature >= 40) {
+        riskLevel = "SEVERE";
+        recommendation = "Severe Heatwave Warning";
+      } else if (currentTemperature >= 38 && humidity >= 60) {
+        riskLevel = "HIGH";
+        recommendation = "Issue Heatwave Warning";
+      } else if (currentTemperature >= 35 && currentTemperature <= 38) {
+        riskLevel = "MODERATE";
+        recommendation = "Monitor Conditions";
+      } else if (forecastTemperature >= 40) {
+        riskLevel = "EARLY WARNING";
+        recommendation = "Prepare for Heatwave";
+      } else {
+        riskLevel = "NORMAL";
+        recommendation = "Continue Monitoring";
+      }
+
+      var earlyWarning = "";
+      if (forecastTemperature >= 40 || heatwaveCondition) {
+        earlyWarning = vulnerablePopulationAlert
+          ? "Early warning: prepare for the heatwave and alert vulnerable populations now."
+          : "Early warning: prepare for the heatwave.";
+      } else {
+        earlyWarning = "No early warning needed. Continue monitoring.";
+      }
+
+      var blockClass = "sev-low";
+      if (riskLevel === "SEVERE") {
+        blockClass = "sev-ext";
+      } else if (riskLevel === "HIGH") {
+        blockClass = "sev-high";
+      } else if (riskLevel === "MODERATE" || riskLevel === "EARLY WARNING") {
+        blockClass = "sev-mod";
+      }
+
+      console.log("Location: " + locationName);
+      console.log("Temperature: " + currentTemperature + "\u00B0C");
+      console.log("Humidity: " + humidity + "%");
+      console.log("Forecast: " + forecastTemperature + "\u00B0C");
+      console.log("Risk Level: " + riskLevel);
+      console.log("Recommendation: " + recommendation);
+      console.log(earlyWarning);
+
+      document.getElementById("warning-output").innerHTML =
+        '<div class="block ' + blockClass + '">' +
+          '<h2>Risk Decision</h2>' +
+          '<dl>' +
+            '<dt>Location</dt><dd>' + locationName + '</dd>' +
+            '<dt>Temp</dt><dd>' + currentTemperature + '&deg;C</dd>' +
+            '<dt>Humidity</dt><dd>' + humidity + '%</dd>' +
+            '<dt>Forecast</dt><dd>' + forecastTemperature + '&deg;C</dd>' +
+            '<dt>Risk</dt><dd><strong>' + riskLevel + '</strong></dd>' +
+            '<dt>Action</dt><dd>' + recommendation + '</dd>' +
+          '</dl>' +
+          '<p><strong>Early warning:</strong> ' + earlyWarning + '</p>' +
+        '</div>';
+    </script>
+
+    <h2>Decision rules</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>Rules applied in order</caption>
+        <thead><tr><th>Condition</th><th>Recommendation</th></tr></thead>
+        <tbody>
+          <tr><td>Temperature &ge; 40&deg;C</td><td class="sev-ext">Severe Heatwave Warning</td></tr>
+          <tr><td>Temperature &ge; 38&deg;C and Humidity &ge; 60%</td><td class="sev-high">High Heat Risk &ndash; Issue Warning</td></tr>
+          <tr><td>Temperature between 35&deg;C and 38&deg;C</td><td class="sev-mod">Moderate Heat Risk &ndash; Monitor Conditions</td></tr>
+          <tr><td>Forecast temperature &ge; 40&deg;C</td><td class="sev-mod">Early Warning &ndash; Prepare for Heatwave</td></tr>
+          <tr><td>Temperature &lt; 35&deg;C</td><td class="sev-low">Normal &ndash; Continue Monitoring</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><small><a href="programs.html">Back to all programs</a>.</small></p>
+
+  </main>
+  <footer class="site-footer">
+    <p>Heatwave Intelligence System. Web Development Laboratory project. All data shown is sample data.</p>
+  </footer>
+</body>
+</html>
